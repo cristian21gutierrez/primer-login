@@ -1,63 +1,51 @@
 /* Login.css */
 
-/* Contenedor principal */
-.container {
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-container form {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Centrar verticalmente en toda la ventana */
-  background-color: #f5f5f5; /* Fondo suave */
+  flex-direction: column;
 }
 
-/* Estilo del formulario */
-.login-form {
-  background: white; /* Fondo blanco para el formulario */
-  padding: 2rem; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* Sombra suave */
-  max-width: 400px; /* Ancho máximo del formulario */
-  width: 100%; /* Asegura el ancho completo */
+.login-container label {
+  margin-bottom: 5px;
 }
 
-/* Título del formulario */
-.login-title {
-  text-align: center; /* Centrar el texto */
-  color: #333; /* Color oscuro para el título */
-  margin-bottom: 1.5rem; /* Espacio inferior */
-  font-size: 1.5rem; /* Tamaño del texto */
-  font-weight: bold; /* Negrita para el título */
+.login-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
 }
 
-/* Campo de entrada */
-.input-field {
-  width: 100%; /* Ancho completo */
-  padding: 0.8rem; /* Espaciado interno */
-  margin-bottom: 1rem; /* Espaciado entre campos */
-  border: 1px solid #ccc; /* Borde gris claro */
-  border-radius: 4px; /* Bordes redondeados */
-  transition: border-color 0.3s; /* Transición suave para el borde */
+.login-container button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-/* Campo de entrada: foco */
-.input-field:focus {
-  border-color: #66afe9; /* Borde azul al hacer foco */
-  outline: none; /* Eliminar el borde por defecto */
+.login-container button:hover {
+  background-color: #0056b3;
 }
 
-/* Botón de inicio de sesión */
-.login-button {
-  width: 100%; /* Botón de ancho completo */
-  padding: 0.8rem; /* Espaciado interno */
-  border: none; /* Sin borde */
-  border-radius: 4px; /* Bordes redondeados */
-  background-color: #007bff; /* Azul estándar */
-  color: white; /* Color del texto blanco */
-  font-size: 1rem; /* Tamaño del texto */
-  cursor: pointer; /* Cambia el cursor al pasar el ratón */
-  transition: background-color 0.3s; /* Transición suave para el color */
-}
-
-/* Botón de inicio de sesión: hover */
-.login-button:hover {
-  background-color: #0056b3; /* Color más oscuro al hacer hover */
+.login-container p {
+  color: #dc3545;
+  margin-bottom: 15px;
 }

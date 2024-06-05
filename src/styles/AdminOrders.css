@@ -1,0 +1,76 @@
+/* AdminPanel.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .orders-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-item {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-item p {
+    margin: 0;
+    padding: 5px 0;
+  }
+  
+  .products-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .product-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+  }
+  
+  .product-item p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .order-item > div {
+      flex: 1;
+    }
+  
+    .order-item > div:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  

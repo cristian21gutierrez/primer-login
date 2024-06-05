@@ -1,37 +1,57 @@
 import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
-// Crear el contexto
 const AuthContext = createContext();
 
-// Crear el proveedor del contexto
-const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
 
-  // Verificar si hay un token al cargar el componente
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:3000/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setUser(response.data);
+                } catch (error) {
+                    console.error('Error fetching user:', error);
+                    if (error.response && error.response.status === 401) {
+                        localStorage.removeItem('token');
+                        setUser(null);
+                    }
+                }
+            }
+        };
 
-  // Función para iniciar sesión
-  const login = (token) => {
-    localStorage.setItem('authToken', token);
-    setIsAuthenticated(true);
-  };
+        fetchUser();
+    }, []);
 
-  // Función para cerrar sesión
-  const logout = () => {
-    localStorage.removeItem('authToken');
-    setIsAuthenticated(false);
-  };
+    const login = async (username, password) => {
+        const response = await axios.post('http://localhost:3000/auth/login', { username, password });
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        const userResponse = await axios.get('http://localhost:3000/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        setUser(userResponse.data);
+    };
 
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    const logout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
-export { AuthContext, AuthProvider };
+export default AuthContext;
